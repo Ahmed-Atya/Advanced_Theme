@@ -312,13 +312,12 @@ header .mobile-list {
   position: absolute;
   top: 0;
   left: -190px;
-  height: 800px;
   width: 190px;
   display: flex;
   flex-direction: column;
   gap: 30px;
   background-color: white;
-  padding: 74px 7px 5px;
+  padding: 74px 7px 15px;
   z-index: 22;
   transition: all ease-in-out .3s;
   -webkit-transition: all ease-in-out .3s;
@@ -331,6 +330,7 @@ header .mobile-list {
 header .mobile-list.open {
   left: 0;
 }
+
 header .mobile-navbar.active .toggle-menu span:first-child {
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg);
@@ -338,9 +338,11 @@ header .mobile-navbar.active .toggle-menu span:first-child {
   -ms-transform: rotate(45deg);
   -o-transform: rotate(45deg);
 }
-header .mobile-navbar.active .toggle-menu span:nth-child(2){
+
+header .mobile-navbar.active .toggle-menu span:nth-child(2) {
   background-color: transparent;
 }
+
 header .mobile-navbar.active .toggle-menu span:last-child {
 
   transform: rotate(-45deg);
