@@ -1,80 +1,84 @@
-//Nav Toggle Menu
-// let toggleList = document.querySelector(".toggle-menu");
-// let list = document.getElementById("list");
-//
-// toggleList.addEventListener("click",function(){
-//
-//  list.classList.toggle("open");
-// });
+// Nav Toggle Menu
+const toggleList = document.querySelector(".mobile-navbar .toggle-menu");
+const list = document.querySelector(".mobile-list");
+const mobileNavBar = document.querySelector(".mobile-navbar");
+
+toggleList.addEventListener("click", function () {
+  
+  list.classList.toggle("open");
+  mobileNavBar.classList.toggle("active");
+});
+
+// <i class="fa-solid fa-xmark"></i>
 //End Nav Toggle Menu
 
 // // our skills progress section
 
 
-let ourSkills = document.querySelector(".our-skills");
+const ourSkills = document.querySelector(".our-skills");
 
-window.onscroll = function(){
-
-
-    let skillsOfsetTop = ourSkills.offsetTop;
+window.onscroll = function () {
 
 
-    let skillsOuterHeight = ourSkills.offsetHeight;
+  let skillsOfsetTop = ourSkills.offsetTop;
 
 
-    let windowHeight = this.innerHeight;
+  let skillsOuterHeight = ourSkills.offsetHeight;
 
 
-    let windowScrollTop = window.pageYOffset;
+  let windowHeight = this.innerHeight;
 
 
-    if(windowScrollTop > (skillsOfsetTop + skillsOuterHeight - windowHeight)){
+  let windowScrollTop = window.pageYOffset;
 
-        let allSkills = document.querySelectorAll(".skill-box .skill-progress span");
 
-        allSkills.forEach(skill =>{
+  if (windowScrollTop > (skillsOfsetTop + skillsOuterHeight - windowHeight)) {
 
-            skill.style.width = skill.dataset.progress;
-            skill.textContent = skill.dataset.progress;
-        });
+    let allSkills = document.querySelectorAll(".skill-box .skill-progress span");
 
-    }
+    allSkills.forEach(skill => {
+
+      skill.style.width = skill.dataset.progress;
+      skill.textContent = skill.dataset.progress;
+    });
+
+  }
 
 };
 //End our skills progress
 // Start Event Timer
-function makeCountDownTimer(){
+function makeCountDownTimer() {
   let daysCount = document.querySelector('.days'),
-      hoursCount = document.querySelector('.hours'),
-      minutesCount =document.querySelector('.minutes'),
-      secondsCount =document.querySelector('.seconds');
+    hoursCount = document.querySelector('.hours'),
+    minutesCount = document.querySelector('.minutes'),
+    secondsCount = document.querySelector('.seconds');
 
-   let challengeDate = new Date('jan 01,2024 09:00:00 GMT+02').getTime();
-   let  repeat = setInterval(()=>{
+  let challengeDate = new Date('jan 01,2024 09:00:00 GMT+02').getTime();
+  let repeat = setInterval(() => {
 
     let now = new Date().getTime();
     let difference = challengeDate - now;
 
-    let days = Math.floor(difference / (1000*60*60*24));
-    let hours = Math.floor((difference % (1000*60*60*24)) / (1000*60*60));
-    let minutes = Math.floor((difference % (1000*60*60)) / (1000*60));
-    let seconds =Math.floor((difference % (1000*60)) / (1000));
+    let days = Math.floor(difference / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((difference % (1000 * 60)) / (1000));
 
-     daysCount.innerHTML = `${days}`;
-     hoursCount.innerHTML = `${hours}`;
-     minutesCount.innerHTML = `${minutes}`;
-     secondsCount.innerHTML = `${seconds}`;
+    daysCount.innerHTML = `${days}`;
+    hoursCount.innerHTML = `${hours}`;
+    minutesCount.innerHTML = `${minutes}`;
+    secondsCount.innerHTML = `${seconds}`;
 
-    if(difference < 0){
-     clearInterval(repeat);
+    if (difference < 0) {
+      clearInterval(repeat);
     }
-   },1000);
+  }, 1000);
 
 }
 makeCountDownTimer();
 // End Event Timer
 // Start Top Video Slider
-function videoSlider(){
+function videoSlider() {
   let videoSources = [
     "https://cdn.pixabay.com/photo/2023/02/05/17/25/leaves-7770035_960_720.jpg",
     "https://cdn.pixabay.com/photo/2014/09/14/18/04/dandelion-445228_960_720.jpg",
@@ -90,7 +94,7 @@ function videoSlider(){
   let info = document.querySelector('.preview .info');
   currentVideo.src = "https://cdn.pixabay.com/photo/2023/02/05/17/25/leaves-7770035_960_720.jpg";
   videos.forEach((video, index) => {
-    video.addEventListener("click",function(){
+    video.addEventListener("click", function () {
       currentVideo.src = videoSources[index];
       info.textContent = this.innerText;
       changeActiveState(videos);
@@ -98,14 +102,34 @@ function videoSlider(){
   });
 }
 videoSlider();
-function changeActiveState(list)
-{
-    list.forEach(function (element){
-        element.addEventListener('click',function (){
-            list.forEach(function (ele){
-                ele.classList.remove('active');
-            }) ;
-            this.classList.add('active');
-        });
+
+function changeActiveState(list) {
+  list.forEach(function (element) {
+    element.addEventListener('click', function () {
+      list.forEach(function (ele) {
+        ele.classList.remove('active');
+      });
+      this.classList.add('active');
     });
+  });
 }
+
+// Scroll to Top button
+
+const scrollBtn = document.querySelector(".btn");
+const btnVisibility = () => {
+  if (window.scrollY > 400) {
+    scrollBtn.style.visibility = "visible";
+  } else {
+    scrollBtn.style.visibility = "hidden";
+  }
+};
+document.addEventListener("scroll", () => {
+  btnVisibility();
+});
+scrollBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
